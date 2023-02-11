@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+clear
+sudo systemctl status --no-pager -l -n 99999 mpdcron.service
