@@ -72,7 +72,7 @@ if [ -f $SLEEP_TIME_FILE ]; then
         # echo "---"  >> $LOG_FILE
 
         # Run the python file to enable sleep
-        /usr/bin/python3 /usr/local/bin/activate_sleep.py
+        python3 /usr/local/bin/activate_sleep.py
         
         echo "---"
 
