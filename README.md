@@ -1,5 +1,5 @@
 # mpdcron-sleep-enabler
-This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD) installation and automatically enable sleep mode on play on a linux machine. I've used it on a Raspberry Pi 3 Debian buster image, but it may run on other linux systems too.
+This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD) installation and automatically enable sleep mode on play on a linux machine. I've used it on a Raspberry Pi 3 Debian buster image, but it may run on other linux systems too. I've had it running for quite a few days and it works seamlessly.
 
 **Most of these installation instructions were written from memory, so please let me know if there are any mistakes. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements and it's always a good idea to look instead any script files before downloading and running them!**
 
@@ -73,19 +73,21 @@ Now, you need to see if you can enable sleep on the mpd server. Make sure sleep 
 ./activate_sleep.py
 ```
 
-Next we want mpdcron to run on boot automatically. **Do not restart your device until you've made sure this works correctly or it may hang.** You can easily disable it again at any point using `systemctl disable mpdcron.service`. Below is how to download, enable and test out the service. If your user is not called "volumio", you need to edit the path "MPDCRON_DIR=/home/volumio/.mpdcron" to be "MPDCRON_DIR=/home/your_username/.mpdcron"
+Next we want mpdcron to run on boot automatically. **Do not restart your device until you've made sure this works correctly or it may hang.** You can easily disable it again at any point using `systemctl disable mpdcron.service`. Below is how to download, enable and test out the service. If your user is not called "volumio", you need to edit the path `MPDCRON_DIR=/home/volumio/.mpdcron` to be `MPDCRON_DIR=/home/your_username/.mpdcron` instead. If you modify the .service file after enabling it, you have to run `sudo systemctl daemon-reload` to get it to read the file again and accept the new changes.
 ```
 cd /lib/system.d/system
 sudo wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/lib/system.d/system/mpdcron.service
-sudo nano /mpdcron.service
+sudo nano mpdcron.service
 sudo systemctl enable /lib/system.d/system/mpdcron.service
-sudo systemctl start  mpdcron.service
-sudo systemctl status  mpdcron.service
+sudo systemctl start mpdcron.service
+sudo systemctl status mpdcron.service
 ```
 
 Next, turn off sleep again using the web-interface or however you control mpd and check that the player script activates and runs the python program correctly by playing/pausing and skipping on the mpd device. Make sure you disable the sleep again before each test. You can check the service output by using my script.
 ```
 mpdcron_status
 ```
+
+All that's left is to restart your device and test it all out. You can then enable/disable/change the sleep value using the text file whenever you want.
 
 If you have any problems, please open them as issues here and post detailed console output and I'll do my best to help you solve them.
