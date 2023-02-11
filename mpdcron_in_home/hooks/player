@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+# File used to enable automatic sleep setting
+SLEEP_TIME_FILE=/media/32GB-USB/mpd_sleep_time.txt
+
+# File used to stop the script running in parallel
+LOCK_FILE=/var/run/mpdcron.lock
+
+# File used to record the last time a play event was triggered
+PLAYED_FILE=/var/run/mpdcron.played
+
+# File used for logging
+LOG_FILE=/var/run/mpdcron.log
+
+# The delay before allowing the script to run again
+DELAY_SECONDS=5
+
+# Variable used to trigger the played script
+execute=false
+
+#Before we start, make sure the SLEEP_TIME_FILE exists and is not zero
+if [ -f $SLEEP_TIME_FILE ]; then
+  zero="0"
+  contents=$(cat "$SLEEP_TIME_FILE")
+  if [ "$zero" == "$contents" ]; then
+    echo "Sleep file contains zero"
+  else
+    echo "Sleep file is not zero"
+    # Sleep for a random time between 0.5 and 1 seconds to prevent parallel processes running
+    ms=$((RANDOM % 499 + 500))
+    sleep 0.$ms
+
+
+    if [ "$MPD_STATUS_STATE" == play -a ! -f $LOCK_FILE ]; then
+
+      echo "Play event triggered and no other scripts running"
+
+      # Create the lock file to stop other copies of this script running
+      touch $LOCK_FILE
+
+      if [ -f $PLAYED_FILE ]; then
+        echo "Play has occurred at least once before on this boot"
+
+        # Get last played time and calculate how long ago it was
+        last_played_time=$(cat $PLAYED_FILE)
+        seconds_since_last=`expr \`date +%s\` - $last_played_time`
+
+        if [ $seconds_since_last -gt $DELAY_SECONDS ]; then
+          echo "It has been at least 5 second since last play event"
+
+          # Set to true so the played script will be executed later
+          execute=true
+        fi
+
+      else
+        echo "This is the first play event on this boot"
+        
+          # Set to true so the played script will be executed later
+          execute=true
+
+      fi
+
+
+      # Check to see if we should run the played script
+      if [ "$execute" = true ] ; then
+        echo "---"
+        echo "Executing played script"
+
+        # echo "---"  >> $LOG_FILE
+        # date >> $LOG_FILE
+        # echo "Executing the played script" >> $LOG_FILE
+        # echo "---"  >> $LOG_FILE
+
+        # Run the python file to enable sleep
+        /usr/bin/python3 /usr/local/bin/activate_sleep.py
+        
+        echo "---"
+
+        # Update the file with the new last played time
+        date +%s > $PLAYED_FILE
+
+      fi
+
+      sleep 2
+
+      # Remove the lock file as we are finished
+      rm -f $LOCK_FILE > /dev/null 2>&1
+
+    fi
+
+  fi
+
+fi
