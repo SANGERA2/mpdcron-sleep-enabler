@@ -39,7 +39,7 @@ If you're planning to edit this file over samba, you should also check you can v
 sudo chmod 0777 /folder_of_your_choosing/mpd_sleep_time.txt
 ```
 
-Now, you need to download the python program that will activate the sleep on mpd and set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="folder_of_your_choosing/mpd_sleep_time.txt"`.
+Now, you need to download the python program that will activate the sleep on mpd and set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="/folder_of_your_choosing/mpd_sleep_time.txt"` so Python can use it.
 ```
 cd /usr/local/bin
 wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/usr/local/bin/activate_sleep.py
