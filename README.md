@@ -1,14 +1,14 @@
 # mpdcron-sleep-enabler
-This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD) installation and automatically enable sleep mode on play on a linux machine. I've used it on a Raspberry Pi buster image, but it may run on other linux systems too.
+This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD) installation and automatically enable sleep mode on play on a linux machine. I've used it on a Raspberry Pi 3 Debian buster image, but it may run on other linux systems too.
 
-**Most of these installation instructions were written from memory, so please let me know if there are any mistakes. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements, so it's a good idea to look instead any script files before downloading and running them!**
+**Most of these installation instructions were written from memory, so please let me know if there are any mistakes. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements and it's always a good idea to look instead any script files before downloading and running them!**
 
-First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
+First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the Debian buster [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
 ```
 sudo apt-get install mpdcron`
 ```
 
-Then, you need to create a couple of files and folders and download a few files BEFORE running mpdcron or you will get permission errors. Do NOT use sudo/root. THe cd ~ goes into the user's home folder
+Then, you need to create a couple of files and folders and download a few files BEFORE running mpdcron or you will get permission errors. Do NOT use sudo/root. The cd ~ goes into the user's home folder
 ```
 cd ~
 mkdir .mpdcron
