@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# File used to enable automatic sleep setting
-SLEEP_TIME_FILE=/media/32GB-USB/mpd_sleep_time.txt
+# File used to enable and set minutes for automatic sleep setting.
+# Cbange this to a path you can easily access.
+# If the contents is 0 or it can't be found, sleep is disabled.
+SLEEP_TIME_FILE=/home/volumio/mpd_sleep_time.txt
 
 # File used to stop the script running in parallel
 LOCK_FILE=/var/run/mpdcron.lock
