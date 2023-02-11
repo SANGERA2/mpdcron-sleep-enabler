@@ -3,8 +3,8 @@ import sys
 from socketIO_client import SocketIO
 from time import sleep
 
-
-SLEEP_TIME_FILE="/media/32GB-USB/mpd_sleep_time.txt"
+# Change this to somewhere you can easily access
+SLEEP_TIME_FILE="/home/volumio/mpd_sleep_time.txt"
 
 
 def setSleep(state):
