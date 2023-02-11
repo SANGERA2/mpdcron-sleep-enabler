@@ -3,7 +3,7 @@ This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD)
 
 **Most of these installation instructions were written from memory, so please let me know if there are any mistakes. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements and it's always a good idea to look instead any script files before downloading and running them!**
 
-First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the Debian buster [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
+Everything here requires you to use the linux terminal - either on the machine or remotely over ssh. You can use [Putty](https://www.putty.org/) if you're using a Windows machine. First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the Debian buster [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
 ```
 sudo apt-get install mpdcron
 ```
@@ -22,7 +22,7 @@ sudo chmod +x player
 ```
 
 Now, you need to edit the player file to set the text after `SLEEP_TIME_FILE=` to a path where you will store an easily accessible text file that allows you to modify the amount of time to sleep for (the one I've provided is set to 120 minutes by default. If you set the value to 0 or the file doesn't exist, the sleep will not be activated. I stored it in the root of a USB key I have my music on and that's shared using samba by Volumio so I can easily access it from anywhere.
-Once you have modified the file path using the nano editor, you quit and save using 'Ctrl + x', 'y', 'enter' 
+Once you have modified the file path using the nano editor, you quit and save using `Ctrl + x`, `y`, `enter` and you'll be returned to the console. 
 ```
 nano player
 '``
