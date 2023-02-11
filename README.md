@@ -25,14 +25,14 @@ Now, you need to edit the player file to set the text after `SLEEP_TIME_FILE=` t
 Once you have modified the file path using the nano editor, you quit and save using `Ctrl + x`, `y`, `enter` and you'll be returned to the console. 
 ```
 nano player
-'``
+```
 
 Then you need to download and  and edit that file using nano to contain a number of your choosing or leave it at 90 minutes.
-'''
+```
 cd /folder_of_your_choosing
 wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/mpd_sleep_time.txt
 nano mpd_sleep_time.txt
-'''
+```
 
 If you're planning to edit this file over samba, you should also check you can view and make changes to that file. If you can't, then you may need to modify it's permissions using chmod.
 ```
