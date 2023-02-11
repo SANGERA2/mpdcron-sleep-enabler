@@ -68,7 +68,7 @@ You need to install this Python [socket.io client](https://pypi.org/project/sock
 pip3 install -U socketIO-client
 ```
 
-Now, you need to see if you can enable sleep on the mpd server. Make sure sleep is not already enabled before trying this as it only activates when sleep is not currently enabled. It's designed to run on the same device as teh mpd installation, but if you're running it on a different device, change `localhost` to be the device hostname.
+Now, you need to see if you can enable sleep on the mpd server. Make sure sleep is not already enabled before trying this as it only activates when sleep is not currently enabled. It's designed to run on the same device as the mpd installation, but if you're running it on a different device, change `localhost` to be the device hostname (or possibly IP address may work too).
 ```
 ./activate_sleep.py
 ```
