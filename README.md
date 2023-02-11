@@ -5,7 +5,7 @@ This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD)
 
 First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the Debian buster [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
 ```
-sudo apt-get install mpdcron`
+sudo apt-get install mpdcron
 ```
 
 Then, you need to create a couple of files and folders and download a few files BEFORE running mpdcron or you will get permission errors. Do NOT use sudo/root. The cd ~ goes into the user's home folder
