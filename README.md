@@ -65,9 +65,9 @@ If you don't already have pip3 installed (I'm using 18.1), then you will need th
 sudo apt-get install python3-pip
 ```
 
-You need to install this Python [socket.io client](https://pypi.org/project/socketIO-client/). It works great for me for this use-case. I can't remember if I ran pip3 using sudo or not, so you may need to write that in front of the command and possibly try it without the -U option too if it looks like Python can't find it!
+You need to install this Python [socket.io client](https://pypi.org/project/socketIO-client/). It works great for me for this use-case. Possibly try it without the -U option if it looks like Python can't find it!
 ```
-pip3 install -U socketIO-client
+sudo pip3 install -U socketIO-client
 ```
 
 Now, you need to see if you can enable sleep on the mpd server. Make sure sleep is not already enabled before trying this as it only activates when sleep is not currently enabled. It's designed to run on the same device as the mpd installation, but if you're running it on a different device, change `localhost` to be the device hostname (or possibly IP address may work too).
@@ -77,10 +77,10 @@ Now, you need to see if you can enable sleep on the mpd server. Make sure sleep 
 
 Next we want mpdcron to run on boot automatically. **Do not restart your device until you've made sure this works correctly or it may hang.** You can easily disable it again at any point using `systemctl disable mpdcron.service`. Below is how to download, enable and test out the service. If your user is not called "volumio", you need to edit the path `MPDCRON_DIR=/home/volumio/.mpdcron` to be `MPDCRON_DIR=/home/your_username/.mpdcron` instead. If you modify the .service file after enabling it, you have to run `sudo systemctl daemon-reload` to get it to read the file again and accept the new changes.
 ```
-cd /lib/system.d/system
-sudo wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/lib/system.d/system/mpdcron.service
+cd /lib/systemd/system
+sudo wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/lib/systemd/system/mpdcron.service
 sudo nano mpdcron.service
-sudo systemctl enable /lib/system.d/system/mpdcron.service
+sudo systemctl enable /lib/systemd/system/mpdcron.service
 sudo systemctl start mpdcron.service
 sudo systemctl status mpdcron.service
 ```
