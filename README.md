@@ -44,14 +44,14 @@ sudo chmod 0777 /folder_of_your_choosing/mpd_sleep_time.txt
 Now, you need to download the python program that will activate the sleep on mpd and set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="/folder_of_your_choosing/mpd_sleep_time.txt"` so Python can use it.
 ```
 cd /usr/local/bin
-wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/activate_sleep.py
+sudo wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/activate_sleep.py
 sudo chmod 0777 activate_sleep.py
 nano activate_sleep.py
 ```
 
 Then install a simple script in the same folder to see all of the mpdcron service status as it produces a lot of text, but only shows you the last 5 or so lines if you use `sudo systemctl status mpdcron.service`. You won't be able to test this until after installing the service.
 ```
-wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/mpdcron_status
+sudo wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/mpdcron_status
 sudo chmod 0777 mpdcron_status
 ```
 
