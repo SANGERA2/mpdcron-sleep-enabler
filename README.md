@@ -16,10 +16,10 @@ cd ~
 mkdir .mpdcron
 cd .mpdcron
 touch mpdcron.pid
-wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/mpdcron_in_home/mpdcron.conf
+wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/mpdcron_in_home/mpdcron.conf
 mkdir hooks
 cd hooks
-wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/mpdcron_in_home/hooks/player
+wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/mpdcron_in_home/hooks/player
 sudo chmod +x player
 ```
 
@@ -32,7 +32,7 @@ nano player
 Then you need to download and  and edit that file using nano to contain a number of your choosing or leave it at 90 minutes.
 ```
 cd /folder_of_your_choosing
-wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/mpd_sleep_time.txt
+wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/mpd_sleep_time.txt
 nano mpd_sleep_time.txt
 ```
 
@@ -44,14 +44,14 @@ sudo chmod 0777 /folder_of_your_choosing/mpd_sleep_time.txt
 Now, you need to download the python program that will activate the sleep on mpd and set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="/folder_of_your_choosing/mpd_sleep_time.txt"` so Python can use it.
 ```
 cd /usr/local/bin
-wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/usr/local/bin/activate_sleep.py
+wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/activate_sleep.py
 sudo chmod 0777 activate_sleep.py
 nano activate_sleep.py
 ```
 
 Then install a simple script in the same folder to see all of the mpdcron service status as it produces a lot of text, but only shows you the last 5 or so lines if you use `sudo systemctl status mpdcron.service`. You won't be able to test this until after installing the service.
 ```
-wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/usr/local/bin/mpdcron_status
+wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/mpdcron_status
 sudo chmod 0777 mpdcron_status
 ```
 
@@ -78,7 +78,7 @@ Now, you need to see if you can enable sleep on the mpd server. Make sure sleep 
 Next we want mpdcron to run on boot automatically. **Do not restart your device until you've made sure this works correctly or it may hang.** You can easily disable it again at any point using `systemctl disable mpdcron.service`. Below is how to download, enable and test out the service. If your user is not called "volumio", you need to edit the path `MPDCRON_DIR=/home/volumio/.mpdcron` to be `MPDCRON_DIR=/home/your_username/.mpdcron` instead. If you modify the .service file after enabling it, you have to run `sudo systemctl daemon-reload` to get it to read the file again and accept the new changes.
 ```
 cd /lib/systemd/system
-sudo wget https://github.com/SANGERA2/mpdcron-sleep-enabler/blob/main/lib/systemd/system/mpdcron.service
+sudo wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/lib/systemd/system/mpdcron.service
 sudo nano mpdcron.service
 sudo systemctl enable /lib/systemd/system/mpdcron.service
 sudo systemctl start mpdcron.service
