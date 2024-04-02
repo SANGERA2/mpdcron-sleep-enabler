@@ -3,7 +3,7 @@ This uses the amazing mpdcron application to monitor a Music Player Daemon (MPD)
 
 My Volumio setup only used to play audio-books to my son as he falls asleep. So I don't want it playing all night! 
 
-**Most of these installation instructions were written from memory, so please let me know if there are any mistakes. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements and it's always a good idea to look instead any script files before downloading and running them!**
+**This worked for me when doing it on a fresh installation  using the Feb 2024 release of Volumio. I don't take any responsibility for any damage you do to anything from following my instructions. Everything is pretty clearly documented inside the files and in here, with lots of print/echo statements and it's always a good idea to look inside any script files before downloading and running them!**
 
 Everything here requires you to use the linux terminal - either on the machine or remotely over ssh. You can use [Putty](https://www.putty.org/) if you're using a Windows machine. First, you need to install [mpdcron](https://github.com/alip/mpdcron) - this is included in most standard linux repositories and it monitors the [mpd](https://www.musicpd.org/) service and triggers scripts on different events from the hooks directory. We are only interested in the player events (really only the play event, but player responds to play, pause and stop). I have been using this on a Raspberry Pi running the Debian buster [Volumio 3](https://volumio.com/) image, so the installation and setup of mpd was already done for me!
 ```
@@ -41,7 +41,7 @@ If you're planning to edit this file over samba, you should also check you can v
 sudo chmod 0777 /folder_of_your_choosing/mpd_sleep_time.txt
 ```
 
-Now, you need to download the python program that will activate the sleep on mpd and set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="/folder_of_your_choosing/mpd_sleep_time.txt"` so Python can use it.
+Now, you need to download the python program that will activate the sleep on mpd and when you run the last line to edit it: set the path to the sleep time file to be the same as in the player file except that this time, the path must be surrounded by speech-marks `SLEEP_TIME_FILE="/folder_of_your_choosing/mpd_sleep_time.txt"` so Python can use it. Also, you can choose whether the system will stop playing and stay turned on or power itself off when the sleep triggers by changing which of the ACTION= lines has a # in front of it (the line with the # in front of it is the action that will NOT be taken).
 ```
 cd /usr/local/bin
 sudo wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/activate_sleep.py
