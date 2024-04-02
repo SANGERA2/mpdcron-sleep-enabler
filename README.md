@@ -46,7 +46,7 @@ Now, you need to download the python program that will activate the sleep on mpd
 cd /usr/local/bin
 sudo wget https://raw.githubusercontent.com/SANGERA2/mpdcron-sleep-enabler/main/usr/local/bin/activate_sleep.py
 sudo chmod 0777 activate_sleep.py
-nano activate_sleep.py
+sudo nano activate_sleep.py
 ```
 
 Then install a simple script in the same folder to see all of the mpdcron service status as it produces a lot of text, but only shows you the last 5 or so lines if you use `sudo systemctl status mpdcron.service`. You won't be able to test this until after installing the service.
