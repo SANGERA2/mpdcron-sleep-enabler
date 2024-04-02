@@ -9,8 +9,8 @@ SLEEP_TIME_FILE="/home/volumio/mpd_sleep_time.txt"
 # Uncomment whichever of these you want to be the action undertaken
 # If you don't specify an action, Volumio defaults to 'Stop Music'
 
-#ACTION={'val': 'stop', 'text': 'Stop Music'}
-ACTION={'val': 'poweroff', 'text': 'Power off'}
+#ACTION={'val': 'poweroff', 'text': 'Power off'}
+ACTION={'val': 'stop', 'text': 'Stop Music'}
 
 
 def setSleep(state):
@@ -27,7 +27,7 @@ def setSleep(state):
             #{'enabled': True, 'time': '0:57', 'action': {'val': 'stop', 'text': 'Stop Music'}}
             #{'enabled': True, 'time': '0:56', 'action': {'val': 'poweroff', 'text': 'Turn off'}}
 
-            socketIO.emit('setSleep', {"enabled":True, "time":SLEEP_TIME, 'action': ACTION})
+            socketIO.emit('setSleep', {"enabled":True, "time":SLEEP_TIME, 'action': ACTION} )
 
             # You could comment the line above and use this one instead if you want to take the default action
             # Or if you get problems setting the action!
